@@ -1,21 +1,19 @@
 use std::process::Command;
-use colored::*;
+use colored::Colorize;
 
-<<<<<<< HEAD
-fn check_os() {
-    let output = if cfg!(target_os = "linux") {
-        println!("Checking your Linux Distribution");
-        Command::new("");
-=======
-fn check_platfom() -> char {
-    let output = if cfg!(target_os = "linux") {
+fn check_platfom() {
+    if cfg!(target_os = "linux") {
 
->>>>>>> d551025569a281be061d1f15564c06e85027f9b4
     } else if cfg!(target_os = "windows") {
         panic!("{}", "Configuration tool is not supported on this OS!".red());
-    };
+    } else {
+        panic!("{}", "Could not determine your current OS".red());
+    }
+
+
 }
 
 fn main() {
-
+    println!("");
+    println!("Welcome to <Name Pending>:");
 }
