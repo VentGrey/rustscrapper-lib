@@ -1,6 +1,8 @@
 use colored::Colorize;
 use scanln::scanln;
 
+mod system;
+
 fn check_platfom() {
     if cfg!(target_os = "linux") {
         return;
@@ -9,8 +11,6 @@ fn check_platfom() {
     } else {
         panic!("{}", "Could not determine your current OS".red());
     }
-
-
 }
 
 fn menu() -> u8 {
@@ -36,7 +36,7 @@ fn main() {
     let option = menu();
 
     match option {
-        1 => println!("Working on..."),
+        1 => system::mainsys(),
         _ => panic!("{}", "Invalid Value, Aborting".red())
     }
 }
