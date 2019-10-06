@@ -31,7 +31,7 @@ fn menu() -> u8 {
     println!("\t {}", "3- DevOps".yellow());
     println!("\t {}", "4- User Database".yellow());
     println!("\t {}", "5- Exit".yellow());
-    let mut input = scanln!("> ");
+    let input = scanln!("> ");
     let input:u8 = input.parse().unwrap();
 
     input
