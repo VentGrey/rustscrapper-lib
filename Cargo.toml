@@ -8,3 +8,4 @@ edition = "2018"
 
 [dependencies]
 colored = "1.8.0"
+scanln = "0.1.0"

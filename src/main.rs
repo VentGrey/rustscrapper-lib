@@ -20,3 +20,7 @@ fn main() {
     println!("Welcome to {} (Hazardous Server Protection)", "H.S.P".green());
     println!("Please input your choice from our menu");
 }
+
+fn menu() -> u8 {
+    println!("")
+}
