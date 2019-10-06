@@ -1,4 +1,3 @@
-use std::process::Command;
 use colored::Colorize;
 use scanln::scanln;
 
