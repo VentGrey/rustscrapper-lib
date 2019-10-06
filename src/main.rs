@@ -17,11 +17,11 @@ fn check_platfom() {
 fn menu() -> u8 {
     println!("\t MENU 1 \t");
     println!("\t Please choose what kind of operation you wish to perform");
-    println!("\t {}", "1- System Checking".yellow());
-    println!("\t {}", "2- Dependency Check".yellow());
+    println!("\t {}", "1- System Checking".green());
+    println!("\t {}", "2- Dependency Check".blue());
     println!("\t {}", "3- DevOps".yellow());
     println!("\t {}", "4- User Database".yellow());
-    println!("\t {}", "5- Exit".yellow());
+    println!("\t {}", "5- Exit".red());
     let input = scanln!("> ");
     let input:u8 = input.parse().unwrap();
 
