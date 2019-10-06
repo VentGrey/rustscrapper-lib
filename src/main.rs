@@ -14,15 +14,6 @@ fn check_platfom() {
 
 }
 
-fn main() {
-    println!("Initializing...");
-    println!("{}","Detecting your current platform...".blink());
-    check_platfom();
-    println!("Welcome to {} (Hazardous Server Protection)", "H.S.P".green());
-    println!("Please input your choice from our menu");
-    menu();
-}
-
 fn menu() -> u8 {
     println!("\t MENU 1 \t");
     println!("\t Please choose what kind of operation you wish to perform");
@@ -35,4 +26,18 @@ fn menu() -> u8 {
     let input:u8 = input.parse().unwrap();
 
     input
+}
+
+fn main() {
+    println!("Initializing...");
+    println!("{}","Detecting your current platform...".blink());
+    check_platfom();
+    println!("Welcome to {} (Hazardous Server Protection)", "H.S.P".green());
+    println!("Please input your choice from our menu");
+    let option = menu();
+
+    match option {
+        1 => println!("Working on..."),
+        _ => panic!("{}", "Invalid Value, Aborting".red())
+    }
 }
