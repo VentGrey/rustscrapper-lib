@@ -17,11 +17,10 @@ fn check_software(kind: u8) -> bool {
     match kind {
         1 => {
             // 1 is used to check disk-reffered software
-            Command::new("which")
+            let mut result = Command::new("which")
                 .arg("df")
                 .spawn()
                 .expect("Failed to execute 'which'");
-            true
         }
 
         _ => panic!("{}", "Invalid Value, Aborting".red())
