@@ -1,5 +1,6 @@
 use scanln::scanln;
 use colored::Colorize;
+use std::process::Command;
 
 fn sysmenu() -> u8 {
     println!("\t Please input your choice");
@@ -11,12 +12,20 @@ fn sysmenu() -> u8 {
     return input
 }
 
-fn dsk_usg() {
-    println!("{}","Checking for needed software...".blink())
-}
 
-fn check_software(kind: u8) {
+fn check_software(kind: u8) -> bool {
+    match kind {
+        1 => {
+            // 1 is used to check disk-reffered software
+            Command::new("which")
+                .arg("df")
+                .spawn()
+                .expect("Failed to execute 'which'");
+            true
+        }
 
+        _ => panic!("{}", "Invalid Value, Aborting".red())
+    }
 }
 
 
@@ -29,4 +38,8 @@ pub fn mainsys() {
         1 => dsk_usg(),
         _ => panic!("{}", "Invalid Value, Aborting".red())
     }
+}
+
+fn dsk_usg() {
+   
 }
