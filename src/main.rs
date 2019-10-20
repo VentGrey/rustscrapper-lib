@@ -31,7 +31,9 @@ fn main() {
     println!("Initializing...");
     println!("{}","Detecting your current platform...".blink());
     check_platfom();
-    println!(" λ Welcome to {} (Hazardous Server Protection) λ", "H.S.P".green());
+    println!(
+        " λ Welcome to {} (Hazardous Conditions Server Protection System) λ"
+            , "H.C.S.P.S".green());
     println!("Please input your choice from our menu");
     let option = menu();
 
