@@ -1,3 +1,4 @@
+use cmd_lib::*;
 use scanln::scanln;
 use colored::Colorize;
 use std::process::Command;
@@ -13,14 +14,17 @@ fn sysmenu() -> u8 {
 }
 
 
-fn check_software(kind: u8) -> bool {
+fn check_software(kind: u8) {
     match kind {
         1 => {
-            // 1 is used to check disk-reffered software
-            let result = Command::new("which")
-                .arg("df")
-                .output()
-                .expect("Failed to execute which");
+            if let Ok(result) = run_cmd("which df") {
+                info!("df command is installed.");
+            } else {
+                die!("df is not installed in your system!");
+            }
+        },
+
+        2 => {
 
         }
 
@@ -40,5 +44,5 @@ pub fn mainsys() {
 }
 
 fn dsk_usg() {
-   
+
 }
