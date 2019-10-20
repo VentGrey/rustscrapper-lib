@@ -29,7 +29,6 @@ fn check_software(kind: u8) -> bool {
 }
 
 
-
 pub fn mainsys() {
     println!("\t System Checking Menu \t");
     let option: u8 = sysmenu();
