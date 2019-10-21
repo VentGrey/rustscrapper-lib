@@ -19,8 +19,8 @@ fn check_software(kind: u8) {
         1 => {
             if let Ok(result) = run_cmd("which df") {
                 info!("df command is installed.");
-            } else {
-                die!("df is not installed in your system!");
+            } else if let Err(result) = run_cmd("which df") {
+                die!("df was not found!");
             }
         },
 
@@ -44,5 +44,5 @@ pub fn mainsys() {
 }
 
 fn dsk_usg() {
-
+    check_software(1);
 }
