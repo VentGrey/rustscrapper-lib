@@ -45,4 +45,7 @@ pub fn mainsys() {
 
 fn dsk_usg() {
     check_software(1);
+    println!("All disk management software is present, proceeding to check the \
+              disk type.");
+
 }
