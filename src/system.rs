@@ -17,9 +17,9 @@ fn sysmenu() -> u8 {
 fn check_software(kind: u8) {
     match kind {
         1 => {
-            if let Ok(result) = run_cmd("which df") {
+            if let Ok(_result) = run_cmd("which df") {
                 info!("df command is installed.");
-            } else if let Err(result) = run_cmd("which df") {
+            } else if let Err(_result) = run_cmd("which df") {
                 die!("df was not found!");
             }
         },
@@ -47,5 +47,4 @@ fn dsk_usg() {
     check_software(1);
     println!("All disk management software is present, proceeding to check the \
               disk type.");
-
 }
