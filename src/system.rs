@@ -1,7 +1,7 @@
 use cmd_lib::*;
 use scanln::scanln;
 use colored::Colorize;
-use std::process::Command;
+
 
 fn sysmenu() -> u8 {
     println!("\t Please input your choice");
@@ -10,18 +10,18 @@ fn sysmenu() -> u8 {
     let input = scanln!("> ");
     let input: u8 = input.parse().unwrap();
 
-    return input
+    input
 }
 
 
 fn check_software(kind: u8) {
     match kind {
         1 => {
-            if let Ok(_result) = run_cmd("which df") {
+            if let Ok(_result) = run_cmd!("which df") {
                 info!("df command is installed.");
-            } else if let Err(_result) = run_cmd("which df") {
+            } else if let Err(_result) = run_cmd!("which df") {
                 die!("df was not found!");
-            }
+            }                      
         },
 
         2 => {
