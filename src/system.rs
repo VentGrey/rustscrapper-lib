@@ -1,6 +1,6 @@
 use cmd_lib::*;
-use scanln::scanln;
 use colored::Colorize;
+use scanln::scanln;
 
 /*
  * This function spawns a small system menu to perform several checks on the
@@ -27,13 +27,12 @@ fn check_software(kind: u8) {
                 info!("{}", "df command is installed.".green());
             } else if let Err(_result) = run_cmd!("which df") {
                 die!("{}", "df was not found!".red());
-            }                      
+            }
         }
 
-        _ => panic!("{}", "Invalid Value, Aborting".red())
+        _ => panic!("{}", "Invalid Value, Aborting".red()),
     }
 }
-
 
 pub fn mainsys() {
     println!("\t System Checking Menu \t");
@@ -41,25 +40,25 @@ pub fn mainsys() {
 
     match option {
         1 => dsk_usg(),
-        _ => panic!("{}", "Invalid Value, Aborting".red())
+        _ => panic!("{}", "Invalid Value, Aborting".red()),
     }
 }
 
 fn dsk_usg() {
     check_software(1);
-    println!("{}", "All disk management software is present, proceeding to check the \
-                    disk type.".green());
+    println!(
+        "{}",
+        "All disk management software is present, proceeding to check the \
+         disk type."
+            .green()
+    );
 
-    let dsk_usg = run_fun!("df --output=pcent /mount/point | tr -dc '0-9'");
+    let dsk_usg = run_fun!("df --output=pcent /dev/sda3 | tr -dc '0-9'");
     match dsk_usg {
-        Ok(ok_command) => {
-            if ok_command.parse::<u8>()
-                .expect("Error at type conversion") <= 30 {
-                    println!("{}: {}", "Disk usage is".yellow(), "Ok".green());
-            }
+        Ok(ok_command) => match ok_command.parse::<u8>().expect("Error at type conversion") {
+            0..=30 => println!("{}: {}", "Disk usage is: ".yellow(), "Ok".red()),
+            _ => println!("{}", "Unknown Error".red()),
         },
-        Err(_) => {
-
-        },
+        Err(_) => {}
     }
 }
