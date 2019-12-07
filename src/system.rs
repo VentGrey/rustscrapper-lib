@@ -48,5 +48,18 @@ pub fn mainsys() {
 fn dsk_usg() {
     check_software(1);
     println!("{}", "All disk management software is present, proceeding to check the \
-              disk type.".green());
+                    disk type.".green());
+
+    let dsk_usg = run_fun!("df --output=pcent /mount/point | tr -dc '0-9'");
+    match dsk_usg {
+        Ok(ok_command) => {
+            if ok_command.parse::<u8>()
+                .expect("Error at type conversion") <= 30 {
+                    println!("{}: {}", "Disk usage is".yellow(), "Ok".green());
+            }
+        },
+        Err(_) => {
+
+        },
+    }
 }
