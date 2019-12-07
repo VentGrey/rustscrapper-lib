@@ -58,10 +58,30 @@ fn dsk_usg() {
         Ok(ok_command) => match ok_command.parse::<u8>().expect("Error at type conversion") {
             0..=30 => println!("{}: {}", "Disk usage is".yellow(), "Ok".green()),
             31..=40 => println!("{}: {}", "Disk usage is".yellow(), "Mildly used".yellow()),
-            41..60 => println!(
+            41..=60 => println!(
                 "{}: {}\n Hint: Consider running a cleanup function after this test",
                 "Disk usage is".yellow(),
-                "Highly used".yellow()
+                "Mostly used".yellow()
+            ),
+            61..=70 => println!(
+                "{}: {}\n Hint: Consider running a cleanup function after this test",
+                "Disk usage is".yellow(),
+                "Highly used".red()
+            ),
+            71..=80 => println!(
+                "{}: {}\n Hint: Consider running a cleanup function after this test",
+                "Disk usage is".yellow(),
+                "Low capacity".red()
+            ),
+            81..=90 => println!(
+                "{}: {}\n Hint: Consider running a cleanup function after this test",
+                "Disk usage is".yellow(),
+                "Almost full, writing may fail at this point".red()
+            ),
+            91..=100 => println!(
+                "{}: {}\n Hint: Consider running a cleanup function after this test",
+                "Disk usage is".yellow(),
+                "Almost full, writing may fail at this point".red()
             ),
             _ => println!("{}", "Unknown Error".red()),
         },
