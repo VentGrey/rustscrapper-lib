@@ -29,7 +29,6 @@ fn menu() -> u8 {
 
 fn main() {
     println!("Initializing...");
-    println!("{}","Detecting your current platform...".blink());
     check_platfom();
     println!(
         " λ Welcome to {} (Hazardous Conditions Server Protection System) λ"
@@ -39,6 +38,7 @@ fn main() {
 
     match option {
         1 => system::mainsys(),
+        5 => return,
         _ => panic!("{}", "Invalid Value, Aborting".red())
     }
 }
