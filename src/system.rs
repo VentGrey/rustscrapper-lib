@@ -81,7 +81,7 @@ fn dsk_usg() {
             91..=100 => println!(
                 "{}: {}\n Hint: Consider running a cleanup function after this test",
                 "Disk usage is".yellow(),
-                "Almost full, writing may fail at this point".red()
+                "Almost full, writing will fail at this point".red()
             ),
             _ => println!("{}", "Unknown Error".red()),
         },
