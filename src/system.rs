@@ -85,6 +85,8 @@ fn dsk_usg() {
             ),
             _ => println!("{}", "Unknown Error".red()),
         },
-        Err(_) => {}
+        Err(e) => {
+            eprint!("Error in executing command, failed at: {}", e);
+        }
     }
 }
