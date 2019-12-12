@@ -53,6 +53,7 @@ fn dsk_usg() {
             .green()
     );
 
+    // This is hardcoded for now to use sda3
     let dsk_usg = run_fun!("df --output=pcent /dev/sda3 | tr -dc '0-9'");
     match dsk_usg {
         Ok(ok_command) => match ok_command.parse::<u8>().expect("Error at type conversion") {
