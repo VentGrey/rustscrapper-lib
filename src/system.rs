@@ -60,7 +60,8 @@ fn cpu_usg() {
         "All cpu required software is present, proceeding to check the current cpu load.".green()
     );
 
-    let cpu_usg = run_fun!("mpstat | awk '$12 ~ /[0-9.]+/ { print 100 - $12 }'");
+    let order: &str = "mpstat | awk '$12 ~ /[0-9.]+/ { print 100 - $12 }'";
+    let cpu_usg = run_fun!("{}", order);
     match cpu_usg {
         Ok(ok_command) => match ok_command.parse::<u8>().expect("Error at type conversion") {
             0..=30 => println!("{}: {}", "CPU usage is".yellow(), "Ok".green()),
@@ -75,6 +76,7 @@ fn cpu_usg() {
                 "Disk usage is".yellow(),
                 "Highly used".red()
             ),
+            _ => println!("{}", "Unknown error".red())
         },
         Err(e) => {
             eprint!("Error in executing command, failed at: {}", e);
