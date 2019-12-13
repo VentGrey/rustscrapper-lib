@@ -61,12 +61,11 @@ fn cpu_usg() {
     check_software(2);
     println!(
         "{}",
-        "All cpu required software is present, proceeding to check the current cpu load.".green()
+        "All cpu required software is present, proceeding to check the current cpu load.\n\n'".green()
     );
 
     let order: &str = "mpstat | awk '$12 ~ /[0-9.]+/ { print 100 - $12 }'";
     let cpu_usg = run_fun!("{}", order);
-    dbg!(&cpu_usg);
     match cpu_usg {
         Ok(ok_command) => match ok_command.parse::<f64>().expect("Error at type conversion") {
             0.0..=30.0 => println!("{}: {}", "CPU usage is".yellow(), "Ok".green()),
@@ -94,7 +93,7 @@ fn dsk_usg() {
     println!(
         "{}",
         "All disk required software is present, proceeding to check the \
-         disk type."
+         disk type.\n\n\n"
             .green()
     );
 
@@ -102,8 +101,8 @@ fn dsk_usg() {
     let dsk_usg = run_fun!("df --output=pcent /dev/sda3 | tr -dc '0-9'");
     match dsk_usg {
         Ok(ok_command) => match ok_command.parse::<u8>().expect("Error at type conversion") {
-            0..=30 => println!("{}: {}", "Disk usage is".yellow(), "Ok".green()),
-            31..=40 => println!("{}: {}", "Disk usage is".yellow(), "Mildly used".yellow()),
+            0..=30 => println!("\n\n{}: {}", "Disk usage is".yellow(), "Ok".green()),
+            31..=40 => println!("\n\n{}: {}", "Disk usage is".yellow(), "Mildly used".yellow()),
             41..=60 => println!(
                 "{}: {}\n Hint: Consider running a cleanup function after this test",
                 "Disk usage is".yellow(),
