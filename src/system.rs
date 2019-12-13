@@ -9,7 +9,7 @@ use scanln::scanln;
 fn sysmenu() -> u8 {
     println!("\t Please input your choice");
     println!("{}", "\t 1- View Disk Usage".yellow());
-    println!("{}", "\t 2- View CPU Usage (UNSTABLE)".yellow());
+    println!("{}", "\t 2- View CPU Usage".yellow());
     let input = scanln!("> ");
     let input: u8 = input.parse().unwrap();
 
