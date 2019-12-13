@@ -5,7 +5,7 @@ mod system;
 
 fn check_platfom() {
     if cfg!(target_os = "linux") {
-        return;
+        
     } else if cfg!(target_os = "windows") {
         panic!(
             "{}",
@@ -42,7 +42,7 @@ fn main() {
 
     match option {
         1 => system::mainsys(),
-        5 => return,
+        5 => {},
         _ => panic!("{}", "Invalid Value, Aborting".red()),
     }
 }
