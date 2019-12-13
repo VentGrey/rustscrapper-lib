@@ -28,6 +28,14 @@ fn check_software(kind: u8) {
             } else if let Err(_result) = run_cmd!("which df") {
                 die!("{}", "df was not found!".red());
             }
+        },
+
+        2 => {
+            if let Ok(_result) = run_cmd!("which mpstat") {
+                info!("{}", "mpstat is installed".green());
+            } else if let Err(_result) = run_cmd!("which mpstat") {
+                die!("{}", "mpstat is not present!".red());
+            }
         }
 
         _ => panic!("{}", "Invalid Value, Aborting".red()),
