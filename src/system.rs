@@ -2,6 +2,10 @@ use cmd_lib::*;
 use colored::Colorize;
 use scanln::scanln;
 
+pub fn clear() {
+    print!("\x1B[2J");
+}
+
 /*
  * This function spawns a small system menu to perform several checks on the
  * current system that the script is running.
