@@ -59,6 +59,27 @@ fn cpu_usg() {
         "{}",
         "All cpu required software is present, proceeding to check the current cpu load.".green()
     );
+
+    let cpu_usg = run_fun!("mpstat | awk '$12 ~ /[0-9.]+/ { print 100 - $12 }'");
+    match cpu_usg {
+        Ok(ok_command) => match ok_command.parse::<u8>().expect("Error at type conversion") {
+            0..=30 => println!("{}: {}", "CPU usage is".yellow(), "Ok".green()),
+            31..=40 => println!("{}: {}", "CPU usage is".yellow(), "Mildly used".yellow()),
+            41..=60 => println!(
+                "{}: {}\n Hint: Consider running a cleanup function after this test",
+                "Disk usage is".yellow(),
+                "Mostly used".yellow()
+            ),
+            61..=100 => println!(
+                "{}: {}\n Hint: Consider terminating some processes after this test",
+                "Disk usage is".yellow(),
+                "Highly used".red()
+            ),
+        },
+        Err(e) => {
+            eprint!("Error in executing command, failed at: {}", e);
+        }
+    }
 }
 
 fn dsk_usg() {
