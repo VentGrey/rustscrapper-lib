@@ -9,7 +9,7 @@ use scanln::scanln;
 fn sysmenu() -> u8 {
     println!("\t Please input your choice");
     println!("{}", "\t 1- View Disk Usage".yellow());
-    println!("{}", "\t 2- View CPU Usage".yellow());
+    println!("{}", "\t 2- View CPU Usage (UNSTABLE)".yellow());
     let input = scanln!("> ");
     let input: u8 = input.parse().unwrap();
 
@@ -62,16 +62,17 @@ fn cpu_usg() {
 
     let order: &str = "mpstat | awk '$12 ~ /[0-9.]+/ { print 100 - $12 }'";
     let cpu_usg = run_fun!("{}", order);
+    dbg!(&cpu_usg);
     match cpu_usg {
-        Ok(ok_command) => match ok_command.parse::<u8>().expect("Error at type conversion") {
-            0..=30 => println!("{}: {}", "CPU usage is".yellow(), "Ok".green()),
-            31..=40 => println!("{}: {}", "CPU usage is".yellow(), "Mildly used".yellow()),
-            41..=60 => println!(
+        Ok(ok_command) => match ok_command.parse::<f64>().expect("Error at type conversion") {
+            0.0..=30.0 => println!("{}: {}", "CPU usage is".yellow(), "Ok".green()),
+            31.0..=40.0 => println!("{}: {}", "CPU usage is".yellow(), "Mildly used".yellow()),
+            41.0..=60.0 => println!(
                 "{}: {}\n Hint: Consider running a cleanup function after this test",
                 "Disk usage is".yellow(),
                 "Mostly used".yellow()
             ),
-            61..=100 => println!(
+            61.0..=100.0 => println!(
                 "{}: {}\n Hint: Consider terminating some processes after this test",
                 "Disk usage is".yellow(),
                 "Highly used".red()
