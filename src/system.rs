@@ -14,6 +14,8 @@ fn sysmenu() -> u8 {
     println!("\t Please input your choice");
     println!("{}", "\t 1- View Disk Usage".yellow());
     println!("{}", "\t 2- View CPU Usage".yellow());
+    println!("{}", "\t 3- View RAM Usage".yellow());
+    println!("{}", "\t ----- CLEANUP -----".blue().bold());
     let input = scanln!("> ");
     let input: u8 = input.parse().unwrap();
 
@@ -28,16 +30,20 @@ fn check_software(kind: u8) {
     match kind {
         1 => {
             if let Ok(_result) = run_cmd!("which df") {
+                clear();
                 info!("{}", "df command is installed.".green());
             } else if let Err(_result) = run_cmd!("which df") {
+                clear();
                 die!("{}", "df was not found!".red());
             }
         }
 
         2 => {
             if let Ok(_result) = run_cmd!("which mpstat") {
+                clear();
                 info!("{}", "mpstat is installed".green());
             } else if let Err(_result) = run_cmd!("which mpstat") {
+                clear();
                 die!("{}", "mpstat is not present!".red());
             }
         }
@@ -53,8 +59,13 @@ pub fn mainsys() {
     match option {
         1 => dsk_usg(),
         2 => cpu_usg(),
+        3 => mem_usg(),
         _ => panic!("{}", "Invalid Value, Aborting".red()),
     }
+}
+
+fn mem_usg() {
+
 }
 
 fn cpu_usg() {
