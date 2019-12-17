@@ -2,6 +2,7 @@ use colored::Colorize;
 use scanln::scanln;
 
 mod system;
+mod deps;
 
 fn check_platfom() {
     if cfg!(target_os = "linux") {
