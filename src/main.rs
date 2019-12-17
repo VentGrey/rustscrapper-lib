@@ -20,7 +20,6 @@ fn check_platfom() {
 }
 
 fn menu() -> u8 {
-    println!("\t MENU 1 \t");
     println!("\t Please choose what kind of operation you wish to perform");
     println!("\t {}", "1- System Checking".green());
     println!("\t {}", "2- Dependency Check".blue());
@@ -35,6 +34,11 @@ fn menu() -> u8 {
 
 fn main() {
     /* Arguments parsing section */
+    let args: Vec<String> = env::args().collect();
+
+    /* Arguments count */
+    println!("{}", args.len());
+
 
     println!("Initializing...");
     check_platfom();
