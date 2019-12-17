@@ -65,7 +65,7 @@ pub fn mainsys() {
 }
 
 fn mem_usg() {
-
+    println!("{}", "Not yet available.");
 }
 
 fn cpu_usg() {
