@@ -1,6 +1,8 @@
 use colored::Colorize;
 use scanln::scanln;
 
+use std::env;
+
 mod system;
 mod deps;
 
@@ -32,6 +34,8 @@ fn menu() -> u8 {
 }
 
 fn main() {
+    /* Arguments parsing section */
+
     println!("Initializing...");
     check_platfom();
     println!(
