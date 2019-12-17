@@ -4,6 +4,7 @@ use scanln::scanln;
 mod system;
 mod deps;
 
+
 fn check_platfom() {
     if cfg!(target_os = "linux") {
         
@@ -43,6 +44,7 @@ fn main() {
 
     match option {
         1 => system::mainsys(),
+        2 => deps::check_deps(),
         5 => {},
         _ => panic!("{}", "Invalid Value, Aborting".red()),
     }
