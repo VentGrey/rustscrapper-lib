@@ -6,9 +6,10 @@ use std::env;
 mod system;
 mod deps;
 
-/* Refactor, this will be only an entry point */
+/* TODO: Refactor, this will be only an entry point */
 
 fn check_platfom() {
+    // FIXME: This should try to cover all unix-like
     if cfg!(target_os = "linux") {
         
     } else if cfg!(target_os = "windows") {
