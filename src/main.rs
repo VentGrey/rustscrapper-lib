@@ -6,6 +6,8 @@ use std::env;
 mod system;
 mod deps;
 
+/* Refactor, this will be only an entry point */
+
 fn check_platfom() {
     if cfg!(target_os = "linux") {
         
@@ -39,13 +41,35 @@ fn main() {
     /* Arguments count */
     println!("{}", args.len());
 
+    match args.len() {
+        1 => {
+            system::init()
+        },
+        2 => {
+            match args[1].as_str() {
+                "-h" | "--help" => {
+                    println!(" Usage: rustscrapper [options] [quickruns]");
+                    println!(" Options:");
+                    println!(" -h, --help\t show this help message and exit");
+                    println!(" -l, --list\t list available quickruns");
+                    println!(" -q, --quick\t perform a (safe) quick cleanup");
+                    println!(" -s, --system\t show basic system information");
+                    return;
+                },
+                // TODO: Call functions here
+                _ => {
+                    println!("Invalid argument, run 'rustscrapper --help to see available options'");
+                    std::process::exit(1);
+                }
+            }
+        },
 
-    println!("Initializing...");
+        _ => panic!("Invalid arguments or length")
+    }
+
+
     check_platfom();
-    println!(
-        " λ Welcome to {} (Hazardous Conditions Server Protection System) λ",
-        "H.C.S.P.S".green()
-    );
+    println!("Welcome to {}", "RustScrapper".red());
     println!("Please input your choice from our menu");
     let option = menu();
 
