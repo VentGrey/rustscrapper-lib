@@ -36,6 +36,7 @@ fn menu() -> u8 {
 }
 
 fn main() {
+    check_platfom();
     /* Arguments parsing section */
     let args: Vec<String> = env::args().collect();
 
@@ -69,7 +70,7 @@ fn main() {
     }
 
 
-    check_platfom();
+
     println!("Welcome to {}", "RustScrapper".red());
     println!("Please input your choice from our menu");
     let option = menu();
