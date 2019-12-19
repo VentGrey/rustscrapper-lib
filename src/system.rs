@@ -22,6 +22,19 @@ fn sysmenu() -> u8 {
     input
 }
 
+fn menu() -> u8 {
+    println!("\t Please choose what kind of operation you wish to perform");
+    println!("\t {}", "1- System Checking".green());
+    println!("\t {}", "2- Dependency Check".blue());
+    println!("\t {}", "3- DevOps".yellow());
+    println!("\t {}", "4- User Database".yellow());
+    println!("\t {}", "5- Exit".red());
+    let input = scanln!("> ");
+    let input: u8 = input.parse().unwrap();
+
+    input
+}
+
 /*
  * This function is used to check software in order to ensure that all the
  * required software (or it's alternatives) are installed and fully working.

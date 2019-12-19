@@ -1,12 +1,9 @@
 use colored::Colorize;
-use scanln::scanln;
 
 use std::env;
 
+mod app;
 mod system;
-mod deps;
-
-/* TODO: Refactor, this will be only an entry point */
 
 fn check_platfom() {
     /* Using only cfg can detect if the system is running on
@@ -17,24 +14,13 @@ fn check_platfom() {
         panic!(
             "Configuration tool is not supported on this OS!");
     } else {
-        panic!("Could not determine your current OS");
+        panic!("{}", "Rustscrapper doesn't support your current OS".red());
     }
 }
 
-fn menu() -> u8 {
-    println!("\t Please choose what kind of operation you wish to perform");
-    println!("\t {}", "1- System Checking".green());
-    println!("\t {}", "2- Dependency Check".blue());
-    println!("\t {}", "3- DevOps".yellow());
-    println!("\t {}", "4- User Database".yellow());
-    println!("\t {}", "5- Exit".red());
-    let input = scanln!("> ");
-    let input: u8 = input.parse().unwrap();
-
-    input
-}
 
 fn main() {
+    check_platfom();
     /* Arguments parsing section */
     let args: Vec<String> = env::args().collect();
 
@@ -50,33 +36,21 @@ fn main() {
                 "-h" | "--help" => {
                     println!(" Usage: rustscrapper [options] [quickruns]");
                     println!(" Options:");
-                    println!(" -h, --help\t show this help message and exit");
-                    println!(" -l, --list\t list available quickruns");
-                    println!(" -q, --quick\t perform a (safe) quick cleanup");
+                    println!(" -h, --help  \t show this help message and exit");
+                    println!(" -l, --list  \t list available quickruns");
+                    println!(" -q, --quick \t perform a (safe) quick cleanup");
                     println!(" -s, --system\t show basic system information");
                     return;
                 },
                 // TODO: Call functions here
                 _ => {
-                    println!("Invalid argument, run 'rustscrapper --help to see available options'");
+                    println!("Invalid argument, run \
+                              'rustscrapper --help to see available options'");
                     std::process::exit(1);
                 }
             }
         },
 
         _ => panic!("Invalid arguments or length")
-    }
-
-
-    check_platfom();
-    println!("Welcome to {}", "RustScrapper".red());
-    println!("Please input your choice from our menu");
-    let option = menu();
-
-    match option {
-        1 => system::mainsys(),
-        2 => deps::check_deps(),
-        5 => {},
-        _ => panic!("{}", "Invalid Value, Aborting".red()),
     }
 }
