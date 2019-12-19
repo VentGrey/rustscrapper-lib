@@ -1,10 +1,8 @@
 use colored::Colorize;
-use scanln::scanln;
 
 use std::env;
 
 mod system;
-mod deps;
 
 /* TODO: Refactor, this will be only an entry point */
 
@@ -18,7 +16,7 @@ fn check_platfom() {
             "Configuration tool is not supported on this OS!".red()
         );
     } else {
-        panic!("{}", "Could not determine your current OS".red());
+        panic!("{}", "Rustscrapper doesn't support your current OS".red());
     }
 }
 
