@@ -2,9 +2,8 @@ use colored::Colorize;
 
 use std::env;
 
+mod app;
 mod system;
-
-/* TODO: Refactor, this will be only an entry point */
 
 fn check_platfom() {
     // FIXME: This should try to cover all unix-like
@@ -46,7 +45,8 @@ fn main() {
                 },
                 // TODO: Call functions here
                 _ => {
-                    println!("Invalid argument, run 'rustscrapper --help to see available options'");
+                    println!("Invalid argument, run \
+                              'rustscrapper --help to see available options'");
                     std::process::exit(1);
                 }
             }
