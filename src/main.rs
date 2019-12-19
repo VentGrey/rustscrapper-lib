@@ -9,16 +9,15 @@ mod deps;
 /* TODO: Refactor, this will be only an entry point */
 
 fn check_platfom() {
-    // FIXME: This should try to cover all unix-like
-    if cfg!(target_os = "linux") {
-        
-    } else if cfg!(target_os = "windows") {
+    /* Using only cfg can detect if the system is running on
+     * a any UNIX sytem */
+    if cfg!(unix) {
+        println!("Running on a unix system!");
+    } else if cfg!(windows) {
         panic!(
-            "{}",
-            "Configuration tool is not supported on this OS!".red()
-        );
+            "Configuration tool is not supported on this OS!");
     } else {
-        panic!("{}", "Could not determine your current OS".red());
+        panic!("Could not determine your current OS");
     }
 }
 
