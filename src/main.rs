@@ -43,6 +43,11 @@ fn main() {
                     println!(" -s, --system\t show basic system information");
                     return;
                 },
+
+                "-l" | "--list" => {
+                    println!("Available quickruns:");
+                    println!("freemem, clswap, cbrowser, freedisk, trashbin");
+                },
                 // TODO: Call functions here
                 _ => {
                     println!("Invalid argument, run \
