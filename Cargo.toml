@@ -8,5 +8,5 @@ edition = "2018"
 
 [dependencies]
 colored = "*"
-scanln = "*"
 cmd_lib = "*"
+scanrs = "*"
