@@ -1,5 +1,5 @@
 [package]
-name = "rustscrapper"
+name = "rustscrapper-lib"
 version = "0.1.1"
 authors = ["Omar Jair Purata Funes <omarpurataf@gmail.com>"]
 edition = "2018"
