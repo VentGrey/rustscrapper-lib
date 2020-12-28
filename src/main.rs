@@ -1,27 +1,11 @@
-// This is the main module for rustscrapper
-use cmd_lib::run_fun;
-use cmd_lib::FunResult;
-use cmd_lib::run_cmd;
+use cmd_lib::{FunResult, run_cmd, run_fun};
 
-pub fn bin_exists(bin: &str) -> FunResult {
-    let result = run_fun!("which {}", bin);
-    result
-}
+/* System libraries */
+use std::{env, process::exit};
 
-pub fn exec_status(process: &str) -> i32 {
-    let result = run_cmd!(process);
 
-    let result = match result {
-        Ok(_) => {
-            0
-        }
-        Err(e) => {
-            println!("Process failed to execute at {}", e);
-            1
-        }
-    };
+fn main() {
+    /* Handle arguments passed in order */
 
-    // If matching fails we'll assume everyting went ok
-    0
-
+    let args: Vec<String> = env::args().collect();
 }
