@@ -9,5 +9,5 @@ edition = "2018"
 [dependencies]
 cmd_lib = "*"
 scanrs = "*"
-yansi = "0.5.0"
+yansi = "1.0.1"
 apt-cmd = { git = "https://github.com/pop-os/apt-cmd" }
